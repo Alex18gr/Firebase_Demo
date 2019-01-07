@@ -34,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         SwipeRefreshLayout.OnRefreshListener{
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fabric.with(this, new Crashlytics());
+        Crashlytics.log(Log.DEBUG,TAG,"Application Started now successfully");
         mFab =  findViewById(R.id.fab);
         mParentLayout = findViewById(android.R.id.content);
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else{
                     Toast.makeText(mMainActivity, "Failed. Check log.", Toast.LENGTH_SHORT).show();
+                    Crashlytics.log(Log.ERROR,TAG,"Failed to add a note...");
                 }
             }
         });
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         mLastQueriedDocument = task.getResult().getDocuments()
                                 .get(task.getResult().size() -1);
                     }
-
+                    Crashlytics.log(Log.DEBUG,TAG,"Notes Received");
                     mAdapter.notifyDataSetChanged();
                 }
                 else{
@@ -235,8 +239,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (crashNum) {
             case 1:
                 Crashlytics.getInstance().crash();
+                break;
+            case 2:
+                throw new RuntimeException("This is an exception!!!");
+            case 3:
+                Crashlytics.log(Log.DEBUG,TAG,"Debug log!! Have a nice day :P");
+                throw new NullPointerException("Empty Variable!!!");
         }
     }
+
+    private void logUser() {
+        Crashlytics.setUserIdentifier("12345");
+        Crashlytics.setUserEmail("user@fabric.io");
+        Crashlytics.setUserName("Test User");
+    }
+
 
     public void deleteNote(final Note mNote) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -293,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (user != null) {
 
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Crashlytics.log(Log.DEBUG,TAG,"Sign in successful!!");
 
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
