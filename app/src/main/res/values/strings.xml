@@ -3,4 +3,16 @@
     <string name="login">Login</string>
     <string name="password_hint">Password</string>
     <string name="email_hint">Email</string>
+
+    <!-- Dialog/Fragment names -->
+    <string name="dialog_new_note">New Note Dialog</string>
+    <string name="dialog_view_note">View Note Dialog</string>
+
+    <!-- Strings -->
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="sign_out">sign out</string>
+    <string name="crash_1">Crash 1</string>
+    <string name="crash_2">Crash 2</string>
+    <string name="crash_3">Crash 3</string>
 </resources>

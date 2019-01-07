@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/crash1"
+        android:title="@string/crash_1"
+        />
+    <item
+        android:id="@+id/crash2"
+        android:title="@string/crash_2"
+        />
+    <item
+        android:id="@+id/crash3"
+        android:title="@string/crash_3"
+        />
+
+    <item
+        android:id="@+id/optionSignOut"
+        android:title="@string/sign_out"
+        />
+
+
+</menu>
