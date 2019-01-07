@@ -20,6 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         debug {
@@ -47,6 +48,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:16.1.0'
+    // Google Authentication with Firebase
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
     // Firebase Messanging
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     // Add the In-App Messaging dependency:

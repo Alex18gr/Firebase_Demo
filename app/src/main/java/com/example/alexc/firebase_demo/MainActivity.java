@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFab.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        initListView();
         setupFirebaseAuth();
-        getNotes();
+
+
 
     }
 
@@ -311,6 +311,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     Crashlytics.log(Log.DEBUG,TAG,"Sign in successful!!");
+                    initListView();
+                    getNotes();
 
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
